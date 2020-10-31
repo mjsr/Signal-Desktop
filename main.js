@@ -587,7 +587,10 @@ function showAbout() {
     return;
   }
 
+  const { x = 0, y = 0 } = windowConfig || {};
   const options = {
+    x: x + 100,
+    y: y + 100,
     width: 500,
     height: 500,
     resizable: false,
@@ -633,7 +636,11 @@ function showSettingsWindow() {
   addDarkOverlay();
 
   const size = mainWindow.getSize();
+  const { x = 0, y = 0 } = windowConfig || {};
+
   const options = {
+    x: x + 100,
+    y: y + 100,
     width: Math.min(500, size[0]),
     height: Math.max(size[1] - 100, MIN_HEIGHT),
     frame: false,
@@ -719,6 +726,7 @@ async function showStickerCreator() {
       nativeWindowOpen: true,
       spellcheck: await getSpellCheckSetting(),
     },
+    parent: mainWindow,
   };
 
   stickerCreatorWindow = new BrowserWindow(options);
@@ -755,7 +763,10 @@ async function showDebugLogWindow() {
 
   const theme = await pify(getDataFromMainWindow)('theme-setting');
   const size = mainWindow.getSize();
+  const { x = 0, y = 0 } = windowConfig || {};
   const options = {
+    x: x + 100,
+    y: y + 100,
     width: Math.max(size[0] - 100, MIN_WIDTH),
     height: Math.max(size[1] - 100, MIN_HEIGHT),
     resizable: false,
@@ -805,7 +816,10 @@ function showPermissionsPopupWindow(forCalling, forCamera) {
 
     const theme = await pify(getDataFromMainWindow)('theme-setting');
     const size = mainWindow.getSize();
+    const { x = 0, y = 0 } = windowConfig || {};
     const options = {
+      x: x + 100,
+      y: y + 100,
       width: Math.min(400, size[0]),
       height: Math.min(150, size[1]),
       resizable: false,
